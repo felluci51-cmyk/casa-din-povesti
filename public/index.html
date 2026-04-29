@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Casa din Povești — Vadu lui Vodă, Moldova</title>
+<meta name="description" content="O casă de poveste în Vadu lui Vodă, Moldova. Verifică disponibilitatea și rezervă-ți sejurul." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f4ece0;
+    --cream-2:#ede3d3;
+    --cream-3:#e8ddc9;
+    --paper:#fbf6ec;
+    --ink:#2b2418;
+    --ink-soft:#5a4c3b;
+    --ink-muted:#8a7a64;
+    --copper:#9a5e36;
+    --copper-2:#7e4824;
+    --gold:#b07a48;
+    --green:#3a4a2c;
+    --green-2:#2d3b22;
+    --line:rgba(60,45,25,.15);
+    --danger:#a8443a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--cream);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .script{font-family:'Dancing Script',cursive;font-style:italic}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* HEADER */
+  header{background:var(--cream);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1180px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand-mark{width:42px;height:42px;display:grid;place-items:center;color:var(--copper)}
+  .brand-text{line-height:1}
+  .brand-text .b1{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--ink)}
+  .brand-text .b2{font-family:'Dancing Script',cursive;font-size:20px;color:var(--copper);margin-top:-2px}
+  nav.menu{display:flex;gap:30px;align-items:center}
+  nav.menu a{font-size:14.5px;color:var(--ink-soft);font-weight:500}
+  nav.menu a:hover{color:var(--copper)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;border:0;cursor:pointer;font-weight:600;font-size:14px;letter-spacing:.2px;transition:transform .15s ease,box-shadow .2s ease,background .2s,opacity .2s;font-family:inherit}
+  .btn-primary{background:var(--copper);color:#fff}
+  .btn-primary:hover{background:var(--copper-2)}
+  .btn-primary:disabled{opacity:.45;cursor:not-allowed}
+  .btn-dark{background:#23291b;color:#fff}
+  .btn-dark:hover{background:#171c11}
+  .btn-ghost{background:transparent;color:var(--ink-soft)}
+  .btn-ghost:hover{background:var(--cream-2)}
+
+  /* HERO */
+  .hero{background:var(--cream);padding:60px 0 70px;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:84px;line-height:.95;margin:0 0 8px;color:var(--ink);font-weight:500;letter-spacing:-.5px}
+  .hero h1 .accent{display:block;font-family:'Dancing Script',cursive;color:var(--copper);font-size:78px;font-weight:600;margin-top:6px}
+  .hero p.lead{font-size:16px;color:var(--ink-soft);margin:24px 0 14px;max-width:380px}
+  .hero p.sub{font-size:14.5px;color:var(--ink-muted);margin:0 0 30px;max-width:380px}
+  .hero-image{position:relative}
+  .hero-image .frame{border-radius:60% 40% 55% 45%/50% 60% 40% 50%;overflow:hidden;box-shadow:0 30px 60px -25px rgba(40,25,10,.45);aspect-ratio:4/3;background:#0e1216}
+  .hero-image img{width:100%;height:100%;object-fit:cover}
+  .hero-image .leaf{position:absolute;font-size:60px;opacity:.5;color:var(--copper)}
+  .hero-image .leaf.tl{top:-10px;left:-10px;transform:rotate(-20deg)}
+  .hero-image .leaf.br{bottom:-10px;right:0;transform:rotate(160deg)}
+
+  /* FEATURES */
+  .features{background:var(--cream-2);padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .features-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;text-align:center}
+  .feature{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-soft);font-size:12.5px;line-height:1.3}
+  .feature svg{color:var(--copper)}
+  .feature strong{display:block;font-weight:600;color:var(--ink);margin-bottom:1px}
+
+  /* ABOUT */
+  .about{background:var(--cream-3);padding:70px 0}
+  .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:50px;align-items:center}
+  .about h2{font-family:'Cormorant Garamond',serif;font-size:42px;margin:0 0 20px;font-weight:500;color:var(--ink)}
+  .about h2 .leaf{color:var(--copper);font-size:24px;margin-left:6px;display:inline-block;transform:translateY(-4px)}
+  .about p{color:var(--ink-soft);font-size:14.5px;margin:0 0 14px}
+  .about-image{border-radius:14px;overflow:hidden;box-shadow:0 20px 40px -20px rgba(40,25,10,.35);aspect-ratio:16/10}
+  .about-image img{width:100%;height:100%;object-fit:cover}
+
+  /* GALLERY */
+  .gallery{background:var(--cream);padding:70px 0 60px;text-align:center}
+  .gallery h2{font-family:'Cormorant Garamond',serif;font-size:38px;margin:0 0 18px;font-weight:500;color:var(--ink)}
+  .gallery h2::before,.gallery h2::after{content:"❦";color:var(--copper);font-size:18px;margin:0 14px;vertical-align:middle}
+  .tabs{display:inline-flex;background:var(--cream-2);border-radius:999px;padding:6px;margin:8px 0 30px;gap:4px}
+  .tabs button{border:0;background:transparent;cursor:pointer;padding:9px 22px;border-radius:999px;font-size:13.5px;font-weight:500;color:var(--ink-soft);transition:all .2s;font-family:inherit}
+  .tabs button.active{background:#1f2716;color:#fff}
+  .gallery-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .gallery-grid .tile{border-radius:12px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 8px 20px -10px rgba(0,0,0,.25);cursor:pointer;transition:transform .25s,opacity .2s}
+  .gallery-grid .tile:hover{transform:translateY(-3px)}
+  .gallery-grid .tile.hide{display:none}
+  .gallery-grid .tile img{width:100%;height:100%;object-fit:cover}
+
+  /* BOOKING */
+  .booking{background:var(--cream);padding:30px 0 70px}
+  .booking-grid{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:22px;align-items:stretch}
+  .panel{background:#fbf6ec;border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 4px 18px -10px rgba(40,25,10,.15);display:flex;flex-direction:column}
+  .panel h3{font-family:'Cormorant Garamond',serif;font-size:24px;margin:0 0 6px;font-weight:600;color:var(--ink)}
+  .panel .desc{font-size:13px;color:var(--ink-muted);margin:0 0 22px}
+  .row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .row:last-child{border-bottom:0}
+  .row .label{display:flex;align-items:center;gap:10px;color:var(--ink-soft)}
+  .row .label svg{color:var(--copper)}
+  .row .val{color:var(--ink);font-weight:500}
+  .stepper{display:inline-flex;align-items:center;gap:6px}
+  .stepper button{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--ink-soft);font-weight:700;line-height:1}
+  .stepper button:disabled{opacity:.4;cursor:not-allowed}
+
+  /* CALENDAR */
+  .cal-head{display:flex;align-items:center;justify-content:space-between;padding:0 4px 14px}
+  .cal-head h4{font-family:'Cormorant Garamond',serif;font-size:22px;margin:0;font-weight:600}
+  .cal-nav{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;color:var(--ink-soft)}
+  .cal-nav:hover{background:var(--cream-2)}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+  .cal-grid .dow{font-size:11px;color:var(--ink-muted);padding:8px 0;letter-spacing:.5px;font-weight:600}
+  .cal-grid .day{aspect-ratio:1/1;display:grid;place-items:center;font-size:13.5px;color:var(--ink);border-radius:50%;cursor:pointer;transition:background .15s;position:relative;user-select:none}
+  .cal-grid .day.empty{cursor:default}
+  .cal-grid .day.muted{color:var(--ink-muted);opacity:.4;cursor:not-allowed}
+  .cal-grid .day.past{color:var(--ink-muted);opacity:.4;cursor:not-allowed;text-decoration:line-through}
+  .cal-grid .day.booked{color:var(--ink-muted);cursor:not-allowed;text-decoration:line-through;background:repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(168,68,58,.18) 4px,rgba(168,68,58,.18) 6px)}
+  .cal-grid .day:not(.muted):not(.past):not(.booked):not(.empty):hover{background:var(--cream-2)}
+  .cal-grid .day.in-range{background:#efe2cb;color:var(--ink);border-radius:0}
+  .cal-grid .day.range-start{background:var(--copper);color:#fff;border-top-left-radius:50%;border-bottom-left-radius:50%}
+  .cal-grid .day.range-end{background:var(--copper);color:#fff;border-top-right-radius:50%;border-bottom-right-radius:50%}
+  .cal-grid .day.range-start.range-end{border-radius:50%}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11.5px;color:var(--ink-muted);margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);justify-content:center}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .legend .dot.avail{background:#fff;border:1px solid var(--line)}
+  .legend .dot.sel{background:var(--copper)}
+  .legend .dot.busy{background:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(168,68,58,.5) 2px,rgba(168,68,58,.5) 4px);border:1px solid var(--line)}
+
+  /* LOADING / TOAST */
+  .loading{position:absolute;inset:0;background:rgba(251,246,236,.7);display:none;place-items:center;border-radius:14px;z-index:5}
+  .loading.show{display:grid}
+  .spinner{width:28px;height:28px;border:3px solid var(--cream-3);border-top-color:var(--copper);border-radius:50%;animation:spin 0.8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#23291b;color:#fff;padding:12px 22px;border-radius:8px;font-size:14px;box-shadow:0 10px 30px -10px rgba(0,0,0,.4);z-index:200;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+  .toast.error{background:var(--danger)}
+
+  /* MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(20,15,8,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+  .modal-overlay.show{display:flex}
+  .modal{background:#fbf6ec;border-radius:16px;max-width:520px;width:100%;padding:30px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);max-height:90vh;overflow:auto;position:relative}
+  .modal h3{font-family:'Cormorant Garamond',serif;font-size:28px;margin:0 0 6px;font-weight:600}
+  .modal .modal-desc{font-size:13.5px;color:var(--ink-muted);margin:0 0 22px}
+  .modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:0;background:transparent;cursor:pointer;color:var(--ink-soft);display:grid;place-items:center}
+  .modal-close:hover{background:var(--cream-2)}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .field label{font-size:12.5px;color:var(--ink-soft);font-weight:600;letter-spacing:.3px}
+  .field input,.field textarea{font-family:inherit;font-size:14px;padding:10px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}
+  .field input:focus,.field textarea:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(154,94,54,.12)}
+  .field textarea{resize:vertical;min-height:70px}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .summary-box{background:var(--cream-2);border-radius:10px;padding:16px;margin-bottom:18px}
+  .summary-box .row{padding:6px 0;border:0;font-size:13.5px}
+  .summary-box .row.total{font-size:15px;border-top:1px dashed var(--line);padding-top:12px;margin-top:6px}
+  .summary-box .row.total .val{color:var(--copper);font-weight:700}
+  .success-icon{width:64px;height:64px;border-radius:50%;background:#3a4a2c;color:#fff;display:grid;place-items:center;margin:0 auto 16px}
+
+  /* FOOTER */
+  footer{background:var(--green);color:#e9e3d4;padding:40px 0 36px;position:relative;overflow:hidden}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1.2fr auto;gap:40px;align-items:center}
+  footer .brand-text .b1{color:#f4ece0}
+  footer .brand-text .b2{color:#d8a36a}
+  footer .tagline{font-size:13px;color:#cdc4ae;margin-top:8px}
+  .foot-col{font-size:13.5px;line-height:1.9;color:#e9e3d4}
+  .foot-col .item{display:flex;align-items:center;gap:10px}
+  .foot-col svg{color:#d8a36a;flex-shrink:0}
+  .socials{display:flex;gap:14px;justify-content:flex-end}
+  .socials a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#f4ece0;transition:background .2s}
+  .socials a:hover{background:rgba(255,255,255,.18)}
+  footer .leaf-bg{position:absolute;right:-20px;bottom:-20px;font-size:120px;color:#d8a36a;opacity:.15;transform:rotate(15deg);pointer-events:none}
+
+  @media (max-width:980px){
+    .hero-grid,.about-grid,.booking-grid,.footer-grid{grid-template-columns:1fr;gap:30px}
+    .features-row{grid-template-columns:repeat(4,1fr);gap:18px}
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    .hero h1{font-size:60px}.hero h1 .accent{font-size:54px}
+    nav.menu{display:none}
+    .socials{justify-content:flex-start}
+  }
+  @media (max-width:560px){
+    .features-row{grid-template-columns:repeat(2,1fr)}
+    .hero{padding:30px 0 40px}
+    .hero h1{font-size:46px}.hero h1 .accent{font-size:42px}
+    .field-row{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="38" height="38" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 32 L32 12 L54 32 V54 H10 Z"/><path d="M22 54 V40 H42 V54"/><path d="M28 28 H36 V36 H28 Z"/>
+        </svg>
+      </div>
+      <div class="brand-text"><div class="b1 serif">Casa din</div><div class="b2">Povești</div></div>
+    </div>
+    <nav class="menu">
+      <a href="#despre">Despre casă</a>
+      <a href="#facilitati">Facilități</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#preturi">Prețuri</a>
+      <a href="#faq">Întrebări frecvente</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="btn btn-primary" data-scroll-to="#preturi">Rezervă acum</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>Casa din<span class="accent">Povești</span></h1>
+      <p class="lead">O casă de poveste pentru momente care rămân în suflet.</p>
+      <p class="sub">Perfectă pentru relaxare, timp petrecut cu cei dragi și amintiri de neuitat.</p>
+      <button class="btn btn-dark" data-scroll-to="#preturi">
+        VEZI DISPONIBILITATE
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </button>
+    </div>
+    <div class="hero-image">
+      <span class="leaf tl">❦</span>
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80" alt="Casa din Povești" />
+      </div>
+      <span class="leaf br">❦</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="facilitati">
+  <div class="container features-row">
+    <div class="feature"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5"/><path d="M2 17h20"/><path d="M4 17v3"/><path d="M20 17v3"/><path d="M6 12a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/><path d="M12 12a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg><span><strong>3 Dormitoare</strong>spațioase</span></div>
+    <div class="feature"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13"/><path d="M2 21h20"/><path d="M9 13c0-2 3-2 3-4s-3-2-3-4"/><path d="M15 13c0-2 3-2 3-4s-3-2-3-4"/></svg><span><strong>Living</strong>cu șemineu</span></div>
+    <div class="feature"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18l-1 9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><path d="M9 6h6"/></svg><span><strong>Bucătărie</strong>utilată complet</span></div>
+    <div class="feature"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 3l9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg><span><strong>Foișor</strong>& grătar</span></div>
+    <div class="feature"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12c-3 0-6-2-6-6 3 0 6 2 6 6z"/><path d="M12 12c3 0 6-2 6-6-3 0-6 2-6 6z"/><path d="M12 12c-2-1-3-3-3-5 2 0 3 2 3 5z"/></svg><span><strong>Grădină</strong>impresionantă</span></div>
+    <div class="feature"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14l-1.5-6h-11z"/><path d="M5 17v3"/><path d="M19 17v3"/><circle cx="8" cy="17" r="1.5"/><circle cx="16" cy="17" r="1.5"/></svg><span><strong>Parcare</strong>privată</span></div>
+    <div class="feature"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg><span><strong>Wi-Fi</strong>gratuit</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="despre">
+  <div class="container about-grid">
+    <div>
+      <h2 class="serif">Despre casă <span class="leaf">❦</span></h2>
+      <p>Situată într-o zonă liniștită, casa noastră vă oferă tot confortul de care aveți nevoie.</p>
+      <p>Fiecare detaliu este gândit pentru ca tu să te simți ca acasă.</p>
+      <button class="btn btn-primary" data-scroll-to="#galerie">AFLĂ MAI MULTE</button>
+    </div>
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Living cu șemineu" />
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="galerie">
+  <div class="container">
+    <h2 class="serif">Galerie</h2>
+    <div class="tabs" id="gallery-tabs">
+      <button class="active" data-cat="all">Toate</button>
+      <button data-cat="interior">Interior</button>
+      <button data-cat="exterior">Exterior</button>
+      <button data-cat="garden">Grădină</button>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="tile" data-cat="exterior"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80" alt=""></div>
+      <div class="tile" data-cat="garden"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=600&q=80" alt=""></div>
+      <div class="tile" data-cat="interior"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80" alt=""></div>
+      <div class="tile" data-cat="interior"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=80" alt=""></div>
+      <div class="tile" data-cat="interior"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="preturi">
+  <div class="container booking-grid">
+    <!-- LEFT: details -->
+    <div class="panel">
+      <h3 class="serif">Când începe povestea ta?</h3>
+      <p class="desc">Verifică disponibilitatea și rezervă-ți sejurul.</p>
+      <div class="row">
+        <span class="label">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Check-in
+        </span>
+        <span class="val">15:00</span>
+      </div>
+      <div class="row">
+        <span class="label">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><polyline points="9 12 11 14 15 10"/></svg>
+          Check-out
+        </span>
+        <span class="val">11:00</span>
+      </div>
+      <div class="row">
+        <span class="label">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Oaspeți
+        </span>
+        <span class="val stepper">
+          <button id="g-minus" aria-label="Scade">−</button>
+          <span id="g-count">2 adulți</span>
+          <button id="g-plus" aria-label="Creste">+</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- CENTER: calendar -->
+    <div class="panel" style="position:relative">
+      <div class="cal-head">
+        <button class="cal-nav" id="cal-prev" aria-label="Luna anterioară">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <h4 class="serif" id="cal-month">—</h4>
+        <button class="cal-nav" id="cal-next" aria-label="Luna următoare">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+      <div class="legend">
+        <span><span class="dot avail"></span>Disponibil</span>
+        <span><span class="dot sel"></span>Selectat</span>
+        <span><span class="dot busy"></span>Indisponibil</span>
+      </div>
+      <div class="loading" id="cal-loading"><div class="spinner"></div></div>
+    </div>
+
+    <!-- RIGHT: reservation summary -->
+    <div class="panel">
+      <h3 class="serif">Rezervarea ta</h3>
+      <div style="height:8px"></div>
+      <div class="row"><span class="label">Check-in</span><span class="val" id="sum-checkin">—</span></div>
+      <div class="row"><span class="label">Check-out</span><span class="val" id="sum-checkout">—</span></div>
+      <div class="row"><span class="label">Nopți</span><span class="val" id="sum-nights">—</span></div>
+      <div class="row"><span class="label">Oaspeți</span><span class="val" id="sum-guests">2 adulți</span></div>
+      <div class="row"><span class="label">Total</span><span class="val" id="sum-total" style="color:var(--copper);font-weight:700">—</span></div>
+      <div style="height:14px"></div>
+      <button class="btn btn-primary" id="btn-book" style="width:100%;justify-content:center" disabled>SELECTEAZĂ DATELE</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand">
+        <div class="brand-mark" style="color:#d8a36a">
+          <svg width="38" height="38" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 32 L32 12 L54 32 V54 H10 Z"/><path d="M22 54 V40 H42 V54"/><path d="M28 28 H36 V36 H28 Z"/></svg>
+        </div>
+        <div class="brand-text"><div class="b1 serif">Casa din</div><div class="b2">Povești</div></div>
+      </div>
+      <div class="tagline">Locul unde fiecare zi devine o poveste.</div>
+    </div>
+    <div class="foot-col">
+      <div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Vadu lui Vodă, Moldova</div>
+      <div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+373 69 123 456</div>
+    </div>
+    <div class="foot-col">
+      <div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@casadinpovesti.md</div>
+      <div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@cdv.md</div>
+    </div>
+    <div class="socials">
+      <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+    </div>
+  </div>
+  <span class="leaf-bg">❦</span>
+</footer>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Închide">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <div id="form-step">
+      <h3 class="serif">Confirmă rezervarea</h3>
+      <p class="modal-desc">Completează datele tale pentru a finaliza rezervarea.</p>
+
+      <div class="summary-box">
+        <div class="row"><span class="label">Check-in</span><span class="val" id="m-checkin">—</span></div>
+        <div class="row"><span class="label">Check-out</span><span class="val" id="m-checkout">—</span></div>
+        <div class="row"><span class="label">Nopți × Preț</span><span class="val" id="m-breakdown">—</span></div>
+        <div class="row total"><span class="label">Total</span><span class="val" id="m-total">—</span></div>
+      </div>
+
+      <form id="booking-form" autocomplete="on">
+        <div class="field">
+          <label for="f-name">Nume complet *</label>
+          <input id="f-name" name="name" type="text" required maxlength="100" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-email">Email *</label>
+            <input id="f-email" name="email" type="email" required maxlength="120" />
+          </div>
+          <div class="field">
+            <label for="f-phone">Telefon *</label>
+            <input id="f-phone" name="phone" type="tel" required maxlength="40" placeholder="+373 ..." />
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-notes">Observații (opțional)</label>
+          <textarea id="f-notes" name="notes" maxlength="500" placeholder="Ora aproximativă de sosire, preferințe..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" id="form-submit">
+          CONFIRMĂ REZERVAREA
+        </button>
+        <p style="font-size:11.5px;color:var(--ink-muted);text-align:center;margin:14px 0 0">
+          Vei primi confirmarea pe email. Plata se face la check-in.
+        </p>
+      </form>
+    </div>
+
+    <div id="success-step" style="display:none;text-align:center">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="serif">Rezervare trimisă!</h3>
+      <p class="modal-desc">Mulțumim! Cererea ta de rezervare <strong>#<span id="success-id">—</span></strong> a fost înregistrată. Te vom contacta în scurt timp pentru confirmare.</p>
+      <button class="btn btn-primary" id="success-close" style="width:100%;justify-content:center">Închide</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// State
+// ============================================================
+const monthsRo = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+const monthsShortRo = ['Ian','Feb','Mar','Apr','Mai','Iun','Iul','Aug','Sep','Oct','Noi','Dec'];
+
+const today = new Date(); today.setHours(0,0,0,0);
+
+const state = {
+  view: new Date(today.getFullYear(), today.getMonth(), 1),
+  checkIn: null,
+  checkOut: null,
+  bookedDates: new Set(),
+  guests: 2,
+  pricePerNight: 1500,
+  loadingCache: new Map(), // monthKey -> Promise
+};
+
+// ============================================================
+// Helpers
+// ============================================================
+const fmt = (d) => {
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+};
+const fmtRo = (d) => `${d.getDate()} ${monthsShortRo[d.getMonth()]} ${d.getFullYear()}`;
+const nights = (a,b) => Math.round((b-a)/86400000);
+const monthKey = (d) => `${d.getFullYear()}-${d.getMonth()}`;
+
+function showToast(msg, isError=false){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.toggle('error', !!isError);
+  t.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+// ============================================================
+// API
+// ============================================================
+async function fetchAvailability(viewDate){
+  const y = viewDate.getFullYear();
+  const m = viewDate.getMonth();
+  const from = fmt(new Date(y, m, 1));
+  const to   = fmt(new Date(y, m+1, 0));
+  const res = await fetch(`/api/availability?from=${from}&to=${to}`);
+  if (!res.ok) throw new Error('Nu s-a putut încărca disponibilitatea');
+  return res.json();
+}
+
+async function loadAvailability(){
+  const loader = document.getElementById('cal-loading');
+  loader.classList.add('show');
+  try {
+    const data = await fetchAvailability(state.view);
+    state.pricePerNight = data.pricePerNight || state.pricePerNight;
+    // pastreaza si zilele dejavizualizate (pt range cross-month)
+    for (const d of data.bookedDates) state.bookedDates.add(d);
+  } catch (e) {
+    console.error(e);
+    showToast('Eroare la încărcarea calendarului', true);
+  } finally {
+    loader.classList.remove('show');
+    renderCalendar();
+    updateSummary();
+  }
+}
+
+// ============================================================
+// Calendar
+// ============================================================
+function renderCalendar(){
+  document.getElementById('cal-month').textContent =
+    `${monthsRo[state.view.getMonth()]} ${state.view.getFullYear()}`;
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+
+  for (const d of ['LUN','MAR','MIE','JOI','VIN','SÂM','DUM']) {
+    const el = document.createElement('div');
+    el.className = 'dow';
+    el.textContent = d;
+    grid.appendChild(el);
+  }
+
+  const y = state.view.getFullYear();
+  const m = state.view.getMonth();
+  const firstDow = (new Date(y, m, 1).getDay() + 6) % 7; // luni=0
+  const lastDay = new Date(y, m+1, 0).getDate();
+
+  for (let i=0; i<firstDow; i++){
+    const el = document.createElement('div');
+    el.className = 'day empty';
+    grid.appendChild(el);
+  }
+
+  for (let d=1; d<=lastDay; d++){
+    const date = new Date(y, m, d);
+    const ds = fmt(date);
+    const el = document.createElement('div');
+    el.className = 'day';
+    el.textContent = d;
+    el.dataset.date = ds;
+
+    const isPast = date < today;
+    const isBooked = state.bookedDates.has(ds);
+
+    if (isPast) el.classList.add('past');
+    else if (isBooked) el.classList.add('booked');
+
+    // selection
+    if (state.checkIn && state.checkOut){
+      const t = date.getTime();
+      if (t === state.checkIn.getTime()) el.classList.add('range-start');
+      else if (t === state.checkOut.getTime()) el.classList.add('range-end');
+      else if (t > state.checkIn.getTime() && t < state.checkOut.getTime()) el.classList.add('in-range');
+    } else if (state.checkIn && date.getTime() === state.checkIn.getTime()){
+      el.classList.add('range-start','range-end');
+    }
+
+    if (!isPast && !isBooked){
+      el.addEventListener('click', () => onDayClick(date));
+    }
+    grid.appendChild(el);
+  }
+}
+
+function onDayClick(date){
+  // start a new range or extend
+  if (!state.checkIn || (state.checkIn && state.checkOut)){
+    state.checkIn = date;
+    state.checkOut = null;
+  } else if (date.getTime() <= state.checkIn.getTime()){
+    state.checkIn = date;
+    state.checkOut = null;
+  } else {
+    // verifica daca exista zile bookate in interval
+    let cur = new Date(state.checkIn);
+    cur.setDate(cur.getDate()+1);
+    while (cur < date){
+      if (state.bookedDates.has(fmt(cur))){
+        showToast('Intervalul ales conține zile indisponibile.', true);
+        state.checkIn = date;
+        state.checkOut = null;
+        renderCalendar();
+        updateSummary();
+        return;
+      }
+      cur.setDate(cur.getDate()+1);
+    }
+    state.checkOut = date;
+  }
+  renderCalendar();
+  updateSummary();
+}
+
+// ============================================================
+// Summary
+// ============================================================
+function updateSummary(){
+  const ci = document.getElementById('sum-checkin');
+  const co = document.getElementById('sum-checkout');
+  const ng = document.getElementById('sum-nights');
+  const gs = document.getElementById('sum-guests');
+  const tt = document.getElementById('sum-total');
+  const btn = document.getElementById('btn-book');
+
+  ci.textContent = state.checkIn ? fmtRo(state.checkIn) : '—';
+  co.textContent = state.checkOut ? fmtRo(state.checkOut) : '—';
+  gs.textContent = `${state.guests} ${state.guests === 1 ? 'adult' : 'adulți'}`;
+
+  if (state.checkIn && state.checkOut){
+    const n = nights(state.checkIn, state.checkOut);
+    ng.textContent = n;
+    const total = n * state.pricePerNight;
+    tt.textContent = `${total.toLocaleString('ro-RO')} MDL`;
+    btn.disabled = false;
+    btn.textContent = 'REZERVĂ ACUM';
+  } else {
+    ng.textContent = '—';
+    tt.textContent = '—';
+    btn.disabled = true;
+    btn.textContent = state.checkIn ? 'ALEGE CHECK-OUT' : 'SELECTEAZĂ DATELE';
+  }
+}
+
+// ============================================================
+// Modal
+// ============================================================
+function openModal(){
+  if (!state.checkIn || !state.checkOut) return;
+  const n = nights(state.checkIn, state.checkOut);
+  const total = n * state.pricePerNight;
+  document.getElementById('m-checkin').textContent = fmtRo(state.checkIn);
+  document.getElementById('m-checkout').textContent = fmtRo(state.checkOut);
+  document.getElementById('m-breakdown').textContent =
+    `${n} × ${state.pricePerNight.toLocaleString('ro-RO')} MDL`;
+  document.getElementById('m-total').textContent = `${total.toLocaleString('ro-RO')} MDL`;
+  document.getElementById('form-step').style.display = '';
+  document.getElementById('success-step').style.display = 'none';
+  document.getElementById('booking-form').reset();
+  document.getElementById('modal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// ============================================================
+// Wire up
+// ============================================================
+document.getElementById('cal-prev').addEventListener('click', () => {
+  state.view = new Date(state.view.getFullYear(), state.view.getMonth()-1, 1);
+  // nu te lasa sa te duci in trecut sub luna curenta
+  const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  if (state.view < minMonth) state.view = minMonth;
+  loadAvailability();
+});
+document.getElementById('cal-next').addEventListener('click', () => {
+  state.view = new Date(state.view.getFullYear(), state.view.getMonth()+1, 1);
+  loadAvailability();
+});
+
+document.getElementById('btn-book').addEventListener('click', openModal);
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('success-close').addEventListener('click', closeModal);
+document.getElementById('modal').addEventListener('click', (e)=>{
+  if (e.target.id === 'modal') closeModal();
+});
+
+document.getElementById('g-minus').addEventListener('click', () => {
+  if (state.guests > 1){ state.guests--; updateSummary(); }
+});
+document.getElementById('g-plus').addEventListener('click', () => {
+  if (state.guests < 8){ state.guests++; updateSummary(); }
+});
+document.getElementById('g-count').textContent = `${state.guests} adulți`;
+
+document.getElementById('booking-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target;
+  const submit = document.getElementById('form-submit');
+  submit.disabled = true;
+  submit.textContent = 'Se trimite...';
+
+  const payload = {
+    checkIn: fmt(state.checkIn),
+    checkOut: fmt(state.checkOut),
+    guests: state.guests,
+    name: f.name.value.trim(),
+    email: f.email.value.trim(),
+    phone: f.phone.value.trim(),
+    notes: f.notes.value.trim() || null,
+  };
+
+  try {
+    const res = await fetch('/api/reservations', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Eroare la rezervare');
+
+    document.getElementById('success-id').textContent = data.id;
+    document.getElementById('form-step').style.display = 'none';
+    document.getElementById('success-step').style.display = '';
+
+    // marchez nopțile drept ocupate local (până la urmatorul refresh)
+    let cur = new Date(state.checkIn);
+    while (cur < state.checkOut){
+      state.bookedDates.add(fmt(cur));
+      cur.setDate(cur.getDate()+1);
+    }
+    state.checkIn = null;
+    state.checkOut = null;
+    renderCalendar();
+    updateSummary();
+  } catch (err){
+    showToast(err.message, true);
+  } finally {
+    submit.disabled = false;
+    submit.textContent = 'CONFIRMĂ REZERVAREA';
+  }
+});
+
+// gallery filter
+document.querySelectorAll('#gallery-tabs button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#gallery-tabs button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    document.querySelectorAll('#gallery-grid .tile').forEach(t=>{
+      t.classList.toggle('hide', cat !== 'all' && t.dataset.cat !== cat);
+    });
+  });
+});
+
+// scroll-to
+document.querySelectorAll('[data-scroll-to]').forEach(b=>{
+  b.addEventListener('click', () => {
+    const el = document.querySelector(b.dataset.scrollTo);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// init
+loadAvailability();
+</script>
+</body>
+</html>
