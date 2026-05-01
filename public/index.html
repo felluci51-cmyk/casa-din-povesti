@@ -233,7 +233,7 @@
     <div class="hero-image">
       <span class="leaf tl">❦</span>
       <div class="frame">
-        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80" alt="Casa din Povești" />
+        <img src="IMG_3673.JPG" alt="Casa din Povești" />
       </div>
       <span class="leaf br">❦</span>
     </div>
@@ -263,7 +263,7 @@
       <button class="btn btn-primary" data-scroll-to="#galerie">AFLĂ MAI MULTE</button>
     </div>
     <div class="about-image">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Living cu șemineu" />
+      <img src="IMG_3674.JPG" alt="Living cu șemineu" />
     </div>
   </div>
 </section>
@@ -464,9 +464,9 @@
 // ============================================================
 const monthsRo = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
 const monthsShortRo = ['Ian','Feb','Mar','Apr','Mai','Iun','Iul','Aug','Sep','Oct','Noi','Dec'];
-
+ 
 const today = new Date(); today.setHours(0,0,0,0);
-
+ 
 const state = {
   view: new Date(today.getFullYear(), today.getMonth(), 1),
   checkIn: null,
@@ -476,7 +476,7 @@ const state = {
   pricePerNight: 1500,
   loadingCache: new Map(), // monthKey -> Promise
 };
-
+ 
 // ============================================================
 // Helpers
 // ============================================================
@@ -489,7 +489,7 @@ const fmt = (d) => {
 const fmtRo = (d) => `${d.getDate()} ${monthsShortRo[d.getMonth()]} ${d.getFullYear()}`;
 const nights = (a,b) => Math.round((b-a)/86400000);
 const monthKey = (d) => `${d.getFullYear()}-${d.getMonth()}`;
-
+ 
 function showToast(msg, isError=false){
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -498,7 +498,7 @@ function showToast(msg, isError=false){
   clearTimeout(showToast._t);
   showToast._t = setTimeout(()=>t.classList.remove('show'), 3500);
 }
-
+ 
 // ============================================================
 // API
 // ============================================================
@@ -511,7 +511,7 @@ async function fetchAvailability(viewDate){
   if (!res.ok) throw new Error('Nu s-a putut încărca disponibilitatea');
   return res.json();
 }
-
+ 
 async function loadAvailability(){
   const loader = document.getElementById('cal-loading');
   loader.classList.add('show');
@@ -529,35 +529,35 @@ async function loadAvailability(){
     updateSummary();
   }
 }
-
+ 
 // ============================================================
 // Calendar
 // ============================================================
 function renderCalendar(){
   document.getElementById('cal-month').textContent =
     `${monthsRo[state.view.getMonth()]} ${state.view.getFullYear()}`;
-
+ 
   const grid = document.getElementById('cal-grid');
   grid.innerHTML = '';
-
+ 
   for (const d of ['LUN','MAR','MIE','JOI','VIN','SÂM','DUM']) {
     const el = document.createElement('div');
     el.className = 'dow';
     el.textContent = d;
     grid.appendChild(el);
   }
-
+ 
   const y = state.view.getFullYear();
   const m = state.view.getMonth();
   const firstDow = (new Date(y, m, 1).getDay() + 6) % 7; // luni=0
   const lastDay = new Date(y, m+1, 0).getDate();
-
+ 
   for (let i=0; i<firstDow; i++){
     const el = document.createElement('div');
     el.className = 'day empty';
     grid.appendChild(el);
   }
-
+ 
   for (let d=1; d<=lastDay; d++){
     const date = new Date(y, m, d);
     const ds = fmt(date);
@@ -565,13 +565,13 @@ function renderCalendar(){
     el.className = 'day';
     el.textContent = d;
     el.dataset.date = ds;
-
+ 
     const isPast = date < today;
     const isBooked = state.bookedDates.has(ds);
-
+ 
     if (isPast) el.classList.add('past');
     else if (isBooked) el.classList.add('booked');
-
+ 
     // selection
     if (state.checkIn && state.checkOut){
       const t = date.getTime();
@@ -581,14 +581,14 @@ function renderCalendar(){
     } else if (state.checkIn && date.getTime() === state.checkIn.getTime()){
       el.classList.add('range-start','range-end');
     }
-
+ 
     if (!isPast && !isBooked){
       el.addEventListener('click', () => onDayClick(date));
     }
     grid.appendChild(el);
   }
 }
-
+ 
 function onDayClick(date){
   // start a new range or extend
   if (!state.checkIn || (state.checkIn && state.checkOut)){
@@ -617,7 +617,7 @@ function onDayClick(date){
   renderCalendar();
   updateSummary();
 }
-
+ 
 // ============================================================
 // Summary
 // ============================================================
@@ -628,11 +628,11 @@ function updateSummary(){
   const gs = document.getElementById('sum-guests');
   const tt = document.getElementById('sum-total');
   const btn = document.getElementById('btn-book');
-
+ 
   ci.textContent = state.checkIn ? fmtRo(state.checkIn) : '—';
   co.textContent = state.checkOut ? fmtRo(state.checkOut) : '—';
   gs.textContent = `${state.guests} ${state.guests === 1 ? 'adult' : 'adulți'}`;
-
+ 
   if (state.checkIn && state.checkOut){
     const n = nights(state.checkIn, state.checkOut);
     ng.textContent = n;
@@ -647,7 +647,7 @@ function updateSummary(){
     btn.textContent = state.checkIn ? 'ALEGE CHECK-OUT' : 'SELECTEAZĂ DATELE';
   }
 }
-
+ 
 // ============================================================
 // Modal
 // ============================================================
@@ -670,7 +670,7 @@ function closeModal(){
   document.getElementById('modal').classList.remove('show');
   document.body.style.overflow = '';
 }
-
+ 
 // ============================================================
 // Wire up
 // ============================================================
@@ -685,29 +685,29 @@ document.getElementById('cal-next').addEventListener('click', () => {
   state.view = new Date(state.view.getFullYear(), state.view.getMonth()+1, 1);
   loadAvailability();
 });
-
+ 
 document.getElementById('btn-book').addEventListener('click', openModal);
 document.getElementById('modal-close').addEventListener('click', closeModal);
 document.getElementById('success-close').addEventListener('click', closeModal);
 document.getElementById('modal').addEventListener('click', (e)=>{
   if (e.target.id === 'modal') closeModal();
 });
-
+ 
 document.getElementById('g-minus').addEventListener('click', () => {
-  if (state.guests > 1){ state.guests--; updateSummary(); }
+  if (state.guests > 1){ state.guests--; document.getElementById('g-count').textContent = `${state.guests} ${state.guests === 1 ? 'adult' : 'adulți'}`; updateSummary(); }
 });
 document.getElementById('g-plus').addEventListener('click', () => {
-  if (state.guests < 8){ state.guests++; updateSummary(); }
+  if (state.guests < 8){ state.guests++; document.getElementById('g-count').textContent = `${state.guests} ${state.guests === 1 ? 'adult' : 'adulți'}`; updateSummary(); }
 });
 document.getElementById('g-count').textContent = `${state.guests} adulți`;
-
+ 
 document.getElementById('booking-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const f = e.target;
   const submit = document.getElementById('form-submit');
   submit.disabled = true;
   submit.textContent = 'Se trimite...';
-
+ 
   const payload = {
     checkIn: fmt(state.checkIn),
     checkOut: fmt(state.checkOut),
@@ -717,7 +717,7 @@ document.getElementById('booking-form').addEventListener('submit', async (e) => 
     phone: f.phone.value.trim(),
     notes: f.notes.value.trim() || null,
   };
-
+ 
   try {
     const res = await fetch('/api/reservations', {
       method: 'POST',
@@ -726,11 +726,11 @@ document.getElementById('booking-form').addEventListener('submit', async (e) => 
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Eroare la rezervare');
-
+ 
     document.getElementById('success-id').textContent = data.id;
     document.getElementById('form-step').style.display = 'none';
     document.getElementById('success-step').style.display = '';
-
+ 
     // marchez nopțile drept ocupate local (până la urmatorul refresh)
     let cur = new Date(state.checkIn);
     while (cur < state.checkOut){
@@ -748,7 +748,7 @@ document.getElementById('booking-form').addEventListener('submit', async (e) => 
     submit.textContent = 'CONFIRMĂ REZERVAREA';
   }
 });
-
+ 
 // gallery filter
 document.querySelectorAll('#gallery-tabs button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -760,7 +760,7 @@ document.querySelectorAll('#gallery-tabs button').forEach(btn=>{
     });
   });
 });
-
+ 
 // scroll-to
 document.querySelectorAll('[data-scroll-to]').forEach(b=>{
   b.addEventListener('click', () => {
@@ -768,7 +768,7 @@ document.querySelectorAll('[data-scroll-to]').forEach(b=>{
     if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
   });
 });
-
+ 
 // init
 loadAvailability();
 </script>
