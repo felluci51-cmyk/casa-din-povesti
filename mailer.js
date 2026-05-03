@@ -116,7 +116,7 @@ function ownerHtml(r) {
         </td></tr>
 
         <tr><td style="background:#3a4a2c;padding:18px 30px;color:#cdc4ae;font-size:12px;text-align:center">
-          Casa din Povești · Vadu lui Vodă, Moldova
+          Casa din Povești · Hulboaca, Moldova
         </td></tr>
       </table>
     </td></tr>
