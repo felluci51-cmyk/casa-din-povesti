@@ -341,6 +341,11 @@ app.post('/api/test-mail', adminAuth, async (req, res) => {
 // ---- health ----
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
 
+// ---- admin panel ----
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
 // fallback la index.html
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api/')) return next();

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin — Casa din Povești</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#111610;
+    --bg-2:#1a1f16;
+    --bg-3:#232a1e;
+    --card:#1e2419;
+    --card-hover:#252d20;
+    --border:#2e3828;
+    --border-light:#3a4632;
+    --text:#e8e4db;
+    --text-2:#b5ae9e;
+    --text-3:#7d7668;
+    --copper:#d4803a;
+    --copper-dim:#a86428;
+    --green:#5dab3c;
+    --green-dim:#3d7a28;
+    --red:#d94a3f;
+    --red-dim:#a83830;
+    --yellow:#e0b03a;
+    --blue:#4a9cd4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+  /* LOGIN */
+  .login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+  .login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;max-width:380px;width:100%;text-align:center}
+  .login-box h1{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;margin-bottom:4px}
+  .login-box .sub{color:var(--text-3);font-size:13px;margin-bottom:28px}
+  .login-box input{width:100%;padding:12px 16px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;font-family:inherit;outline:none;margin-bottom:14px;transition:border-color .15s}
+  .login-box input:focus{border-color:var(--copper)}
+  .login-box input::placeholder{color:var(--text-3)}
+  .login-box button{width:100%;padding:12px;background:var(--copper);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
+  .login-box button:hover{background:var(--copper-dim)}
+  .login-error{color:var(--red);font-size:13px;margin-top:8px;display:none}
+
+  /* LAYOUT */
+  .app{display:none}
+  .topbar{background:var(--bg-2);border-bottom:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+  .topbar-left{display:flex;align-items:center;gap:12px}
+  .topbar h1{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500}
+  .topbar .badge{font-size:11px;background:var(--copper);color:#fff;padding:3px 10px;border-radius:99px;font-weight:600}
+  .topbar-right{display:flex;gap:10px;align-items:center}
+  .btn-sm{padding:8px 16px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-2);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .15s}
+  .btn-sm:hover{background:var(--bg-3);border-color:var(--border-light)}
+  .btn-sm.danger{border-color:var(--red-dim);color:var(--red)}
+  .btn-sm.danger:hover{background:rgba(217,74,63,.1)}
+
+  .main{padding:24px 28px;max-width:1200px;margin:0 auto}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+  .stat .label{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+  .stat .value{font-size:28px;font-weight:700;font-family:'Cormorant Garamond',serif}
+  .stat .value.copper{color:var(--copper)}
+  .stat .value.green{color:var(--green)}
+  .stat .value.yellow{color:var(--yellow)}
+  .stat .value.blue{color:var(--blue)}
+
+  /* TABS */
+  .tabs{display:flex;gap:4px;margin-bottom:20px;background:var(--bg-2);border-radius:10px;padding:4px;border:1px solid var(--border);width:fit-content}
+  .tab{padding:8px 20px;border-radius:8px;border:none;background:transparent;color:var(--text-3);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .15s}
+  .tab.active{background:var(--card);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  .tab:hover:not(.active){color:var(--text-2)}
+
+  /* FILTERS */
+  .toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+  .search-box{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:inherit;width:280px;outline:none;transition:border-color .15s}
+  .search-box:focus{border-color:var(--copper)}
+  .search-box::placeholder{color:var(--text-3)}
+  .filter-pills{display:flex;gap:6px}
+  .pill{padding:6px 14px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--text-3);font-size:12px;cursor:pointer;font-family:inherit;transition:all .15s}
+  .pill.active{background:var(--copper);border-color:var(--copper);color:#fff}
+  .pill:hover:not(.active){border-color:var(--border-light);color:var(--text-2)}
+
+  /* TABLE */
+  .table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  thead{background:var(--bg-2)}
+  th{padding:12px 16px;text-align:left;font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;font-weight:600;border-bottom:1px solid var(--border)}
+  td{padding:14px 16px;font-size:13.5px;border-bottom:1px solid var(--border);color:var(--text-2)}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--card-hover)}
+  .name-cell{color:var(--text);font-weight:500}
+  .date-cell{font-variant-numeric:tabular-nums}
+  .badge-status{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.3px}
+  .badge-pending{background:rgba(224,176,58,.12);color:var(--yellow)}
+  .badge-confirmed{background:rgba(93,171,60,.12);color:var(--green)}
+  .badge-cancelled{background:rgba(217,74,63,.1);color:var(--red)}
+  .actions{display:flex;gap:6px}
+  .act-btn{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--text-3);transition:all .15s}
+  .act-btn:hover{background:var(--bg-3);color:var(--text)}
+  .act-btn.confirm:hover{border-color:var(--green-dim);color:var(--green);background:rgba(93,171,60,.08)}
+  .act-btn.cancel:hover{border-color:var(--red-dim);color:var(--red);background:rgba(217,74,63,.06)}
+  .empty-state{text-align:center;padding:60px 20px;color:var(--text-3)}
+  .empty-state .icon{font-size:48px;margin-bottom:12px;opacity:.4}
+  .empty-state p{font-size:14px}
+
+  /* BLOCK DATES PANEL */
+  .panel-section{display:none;margin-top:24px}
+  .panel-section.show{display:block}
+  .block-form{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+  .block-form .field{display:flex;flex-direction:column;gap:5px}
+  .block-form label{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px}
+  .block-form input{background:var(--bg-2);border:1px solid var(--border);border-radius:6px;padding:9px 12px;color:var(--text);font-size:13px;font-family:inherit;outline:none}
+  .block-form input:focus{border-color:var(--copper)}
+  .block-form button{padding:10px 20px;background:var(--copper);color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;height:38px}
+  .block-form button:hover{background:var(--copper-dim)}
+
+  .blocked-list{margin-top:16px}
+  .blocked-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .blocked-item .dates{font-size:13px;color:var(--text)}
+  .blocked-item .reason{font-size:12px;color:var(--text-3);margin-left:12px}
+
+  /* TOAST */
+  .toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;padding:12px 22px;border-radius:8px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:200;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
+  .toast.error{background:var(--red)}
+  .toast.show{opacity:1;transform:translateY(0)}
+
+  @media(max-width:768px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .toolbar{flex-direction:column;align-items:stretch}
+    .search-box{width:100%}
+    table{font-size:12px}
+    th,td{padding:10px 12px}
+    .block-form{flex-direction:column;align-items:stretch}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <h1>Casa din Povești</h1>
+    <p class="sub">Panou de administrare</p>
+    <input type="password" id="login-key" placeholder="Admin Key" autofocus />
+    <button id="login-btn">Autentificare</button>
+    <p class="login-error" id="login-error">Cheie invalidă. Încearcă din nou.</p>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Casa din Povești</h1>
+      <span class="badge">ADMIN</span>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-sm" onclick="loadData()">↻ Reîncarcă</button>
+      <button class="btn-sm danger" onclick="logout()">Deconectare</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- STATS -->
+    <div class="stats" id="stats">
+      <div class="stat"><div class="label">Total rezervări</div><div class="value blue" id="st-total">—</div></div>
+      <div class="stat"><div class="label">În așteptare</div><div class="value yellow" id="st-pending">—</div></div>
+      <div class="stat"><div class="label">Confirmate</div><div class="value green" id="st-confirmed">—</div></div>
+      <div class="stat"><div class="label">Venit estimat</div><div class="value copper" id="st-revenue">—</div></div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" data-tab="reservations">Rezervări</button>
+      <button class="tab" data-tab="blocked">Zile blocate</button>
+    </div>
+
+    <!-- RESERVATIONS TAB -->
+    <div id="tab-reservations">
+      <div class="toolbar">
+        <input class="search-box" id="search" placeholder="Caută după nume, email, telefon..." />
+        <div class="filter-pills">
+          <button class="pill active" data-filter="all">Toate</button>
+          <button class="pill" data-filter="pending">În așteptare</button>
+          <button class="pill" data-filter="confirmed">Confirmate</button>
+          <button class="pill" data-filter="cancelled">Anulate</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Oaspete</th>
+              <th>Contact</th>
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Nopți</th>
+              <th>Oaspeți</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Acțiuni</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BLOCKED DATES TAB -->
+    <div id="tab-blocked" class="panel-section">
+      <div class="block-form">
+        <div class="field">
+          <label>De la</label>
+          <input type="date" id="block-from"/>
+        </div>
+        <div class="field">
+          <label>Până la</label>
+          <input type="date" id="block-to"/>
+        </div>
+        <div class="field" style="flex:1">
+          <label>Motiv (opțional)</label>
+          <input type="text" id="block-reason" placeholder="ex: reparații, curățenie..."/>
+        </div>
+        <button onclick="blockDates()">Blochează</button>
+      </div>
+      <div class="blocked-list" id="blocked-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+//  STATE
+// ============================================================
+let adminKey = localStorage.getItem('cdp_admin_key') || '';
+let reservations = [];
+let currentFilter = 'all';
+let searchQuery = '';
+
+const monthsRo = ['ian','feb','mar','apr','mai','iun','iul','aug','sep','oct','noi','dec'];
+
+function fmtDate(s) {
+  if (!s) return '—';
+  const [y,m,d] = s.split('-').map(Number);
+  return `${d} ${monthsRo[m-1]} ${y}`;
+}
+
+function fmtMoney(v) {
+  return Number(v).toLocaleString('ro-RO') + ' MDL';
+}
+
+function showToast(msg, isError=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isError ? ' error' : '');
+  t.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+//  API
+// ============================================================
+async function api(method, url, body) {
+  const opts = {
+    method,
+    headers: { 'X-Admin-Key': adminKey, 'Content-Type': 'application/json' }
+  };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(url, opts);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Eroare');
+  return data;
+}
+
+// ============================================================
+//  AUTH
+// ============================================================
+async function login() {
+  const key = document.getElementById('login-key').value.trim();
+  if (!key) return;
+  adminKey = key;
+  try {
+    await api('GET', '/api/reservations');
+    localStorage.setItem('cdp_admin_key', key);
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadData();
+  } catch {
+    document.getElementById('login-error').style.display = 'block';
+    adminKey = '';
+  }
+}
+
+function logout() {
+  adminKey = '';
+  localStorage.removeItem('cdp_admin_key');
+  location.reload();
+}
+
+// Auto-login if key saved
+(async () => {
+  if (adminKey) {
+    try {
+      await api('GET', '/api/reservations');
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      loadData();
+    } catch {
+      adminKey = '';
+      localStorage.removeItem('cdp_admin_key');
+    }
+  }
+})();
+
+document.getElementById('login-btn').addEventListener('click', login);
+document.getElementById('login-key').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+
+// ============================================================
+//  LOAD DATA
+// ============================================================
+async function loadData() {
+  try {
+    const data = await api('GET', '/api/reservations');
+    reservations = data.reservations || [];
+    updateStats();
+    renderTable();
+  } catch (e) {
+    showToast(e.message, true);
+  }
+}
+
+// ============================================================
+//  STATS
+// ============================================================
+function updateStats() {
+  const active = reservations.filter(r => r.status !== 'cancelled');
+  const pending = reservations.filter(r => r.status === 'pending');
+  const confirmed = reservations.filter(r => r.status === 'confirmed');
+  const revenue = confirmed.reduce((s, r) => s + (r.total_price || 0), 0);
+
+  document.getElementById('st-total').textContent = reservations.length;
+  document.getElementById('st-pending').textContent = pending.length;
+  document.getElementById('st-confirmed').textContent = confirmed.length;
+  document.getElementById('st-revenue').textContent = fmtMoney(revenue);
+}
+
+// ============================================================
+//  TABLE
+// ============================================================
+function renderTable() {
+  const tbody = document.getElementById('table-body');
+  let filtered = reservations;
+
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(r => r.status === currentFilter);
+  }
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(r =>
+      (r.name || '').toLowerCase().includes(q) ||
+      (r.email || '').toLowerCase().includes(q) ||
+      (r.phone || '').toLowerCase().includes(q) ||
+      String(r.id).includes(q)
+    );
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="10"><div class="empty-state"><div class="icon">📋</div><p>Nicio rezervare găsită</p></div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(r => {
+    const nights = Math.round(
+      (new Date(r.check_out + 'T00:00:00Z') - new Date(r.check_in + 'T00:00:00Z')) / 86400000
+    );
+    const statusClass = r.status === 'pending' ? 'badge-pending' : r.status === 'confirmed' ? 'badge-confirmed' : 'badge-cancelled';
+    const statusText = r.status === 'pending' ? 'În așteptare' : r.status === 'confirmed' ? 'Confirmat' : 'Anulat';
+
+    return `<tr>
+      <td>#${r.id}</td>
+      <td class="name-cell">${esc(r.name)}</td>
+      <td>${esc(r.email)}<br><span style="color:var(--text-3)">${esc(r.phone)}</span></td>
+      <td class="date-cell">${fmtDate(r.check_in)}</td>
+      <td class="date-cell">${fmtDate(r.check_out)}</td>
+      <td>${nights}</td>
+      <td>${r.guests}</td>
+      <td style="font-weight:600;color:var(--copper)">${fmtMoney(r.total_price)}</td>
+      <td><span class="badge-status ${statusClass}">${statusText}</span></td>
+      <td class="actions">
+        ${r.status !== 'confirmed' ? `<button class="act-btn confirm" title="Confirmă" onclick="setStatus(${r.id},'confirmed')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></button>` : ''}
+        ${r.status !== 'cancelled' ? `<button class="act-btn cancel" title="Anulează" onclick="setStatus(${r.id},'cancelled')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>` : ''}
+        ${r.status === 'cancelled' ? `<button class="act-btn" title="Repune în așteptare" onclick="setStatus(${r.id},'pending')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>` : ''}
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+// ============================================================
+//  ACTIONS
+// ============================================================
+async function setStatus(id, status) {
+  const labels = { confirmed: 'confirmă', cancelled: 'anulează', pending: 'repune în așteptare' };
+  if (!confirm(`Sigur vrei să ${labels[status]} rezervarea #${id}?`)) return;
+  try {
+    await api('POST', `/api/reservations/${id}/status`, { status });
+    showToast(`Rezervarea #${id} — ${status === 'confirmed' ? 'confirmată' : status === 'cancelled' ? 'anulată' : 'în așteptare'}`);
+    loadData();
+  } catch (e) {
+    showToast(e.message, true);
+  }
+}
+
+// ============================================================
+//  BLOCK DATES
+// ============================================================
+async function blockDates() {
+  const from = document.getElementById('block-from').value;
+  const to = document.getElementById('block-to').value;
+  const reason = document.getElementById('block-reason').value.trim();
+  if (!from || !to) { showToast('Selectează ambele date.', true); return; }
+  if (to < from) { showToast('Data „până la" trebuie să fie după „de la".', true); return; }
+  try {
+    await api('POST', '/api/blocked-dates', { from, to, reason: reason || null });
+    showToast(`Zile blocate: ${fmtDate(from)} → ${fmtDate(to)}`);
+    document.getElementById('block-from').value = '';
+    document.getElementById('block-to').value = '';
+    document.getElementById('block-reason').value = '';
+    loadBlockedDates();
+  } catch (e) {
+    showToast(e.message, true);
+  }
+}
+
+async function unblockDates(from, to) {
+  if (!confirm(`Deblochezi ${fmtDate(from)} → ${fmtDate(to)}?`)) return;
+  try {
+    await api('DELETE', '/api/blocked-dates', { from, to });
+    showToast('Zile deblocate.');
+    loadBlockedDates();
+  } catch (e) {
+    showToast(e.message, true);
+  }
+}
+
+async function loadBlockedDates() {
+  try {
+    const now = new Date();
+    const from = now.toISOString().slice(0, 10);
+    const future = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+    const to = future.toISOString().slice(0, 10);
+    const data = await fetch(`/api/availability?from=${from}&to=${to}`).then(r => r.json());
+    const dates = data.bookedDates || [];
+    const list = document.getElementById('blocked-list');
+    if (dates.length === 0) {
+      list.innerHTML = '<p style="color:var(--text-3);font-size:13px;padding:16px">Nicio zi blocată.</p>';
+      return;
+    }
+    // Group consecutive dates
+    const groups = [];
+    let start = dates[0], prev = dates[0];
+    for (let i = 1; i < dates.length; i++) {
+      const d = new Date(dates[i] + 'T00:00:00Z');
+      const p = new Date(prev + 'T00:00:00Z');
+      if (d - p > 86400000) {
+        groups.push({ from: start, to: prev });
+        start = dates[i];
+      }
+      prev = dates[i];
+    }
+    groups.push({ from: start, to: prev });
+
+    list.innerHTML = groups.map(g => `
+      <div class="blocked-item">
+        <div><span class="dates">${fmtDate(g.from)} → ${fmtDate(g.to)}</span></div>
+        <button class="btn-sm danger" onclick="unblockDates('${g.from}','${g.to}')">Deblochează</button>
+      </div>
+    `).join('');
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+// ============================================================
+//  TABS
+// ============================================================
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    t.classList.add('active');
+    const tab = t.dataset.tab;
+    document.getElementById('tab-reservations').style.display = tab === 'reservations' ? 'block' : 'none';
+    document.getElementById('tab-blocked').style.display = tab === 'blocked' ? 'block' : 'none';
+    document.getElementById('tab-blocked').classList.toggle('show', tab === 'blocked');
+    if (tab === 'blocked') loadBlockedDates();
+  });
+});
+
+// FILTERS
+document.querySelectorAll('.pill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+    p.classList.add('active');
+    currentFilter = p.dataset.filter;
+    renderTable();
+  });
+});
+
+// SEARCH
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  renderTable();
+});
+
+// init tabs
+document.getElementById('tab-blocked').style.display = 'none';
+</script>
+</body>
+</html>
