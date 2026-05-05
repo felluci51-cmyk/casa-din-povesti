@@ -137,9 +137,10 @@
   .hero-text p.lead{font-size:17px;color:var(--ink);margin:26px 0 10px;max-width:400px;font-weight:600;line-height:1.45}
   .hero-text p.sub{font-size:14.5px;color:var(--ink-muted);margin:0 0 32px;max-width:400px;line-height:1.6}
   .hero-image{position:relative}
-  .hero-image .frame{border-radius:50% 50% 50% 50% / 45% 55% 45% 55%;overflow:hidden;box-shadow:0 30px 60px -20px rgba(40,25,10,.35);aspect-ratio:4/3.2;background:#0e1216}
+  .hero-image .frame{border-radius:20px;overflow:hidden;box-shadow:0 25px 50px -15px rgba(40,25,10,.25);aspect-ratio:4/3.2;background:#0e1216;position:relative;z-index:2}
+  .hero-image::before{content:'';position:absolute;top:14px;left:14px;right:-14px;bottom:-14px;border:2.5px solid var(--green-soft);border-radius:20px;z-index:1;opacity:.5}
   .hero-image img{width:100%;height:100%;object-fit:cover}
-  .hero-image .leaf-deco{position:absolute;pointer-events:none}
+  .hero-image .leaf-deco{position:absolute;pointer-events:none;z-index:3}
   .hero-image .leaf-top{top:-20px;right:40px;width:60px;opacity:.7}
   .hero-image .leaf-bottom{bottom:10px;left:-10px;width:40px;opacity:.5}
 
@@ -347,7 +348,7 @@
     <div class="hero-image">
       <svg class="leaf-deco leaf-top" viewBox="0 0 60 60" fill="none"><path d="M30 5 C15 15 5 30 10 50 C20 40 35 25 50 10 C42 8 35 5 30 5Z" fill="#4a6e3a" opacity=".6"/><path d="M30 5 C30 20 25 35 10 50" stroke="#3a5a2c" stroke-width="1.2" fill="none"/></svg>
       <div class="frame">
-        <img src="IMG_3673.JPG" alt="Casa din Povești" />
+        <img src="WhatsApp Image 2026-05-05 at 21.26.41.jpeg" alt="Casa din Povești" />
       </div>
       <svg class="leaf-deco leaf-bottom" viewBox="0 0 40 40" fill="none"><path d="M20 2 C10 10 4 20 8 35 C14 28 24 18 36 6 C30 4 24 2 20 2Z" fill="#4a6e3a" opacity=".45"/></svg>
     </div>
@@ -398,6 +399,7 @@
         <span class="leaf-icon">🌿</span>
         <h2>Locul unde poveștile frumoase încep.</h2>
         <p>Perfect pentru relaxare, aventură și timp de calitate alături de cei dragi.</p>
+        <p>Ne aflăm în Hulboaca, un sat din componența comunei Grătiești din sectorul Rîșcani, municipiul Chișinău, Republica Moldova.</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:center">
         <div class="badge-circle">
